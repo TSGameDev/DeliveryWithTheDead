@@ -1,5 +1,6 @@
 using TSGameDev.Core.Controls;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace TSGameDev.Core.State
 {
@@ -15,6 +16,7 @@ namespace TSGameDev.Core.State
         public override void Update()
         {
             Movement();
+            Aim();
         }
 
         public override void Movement()

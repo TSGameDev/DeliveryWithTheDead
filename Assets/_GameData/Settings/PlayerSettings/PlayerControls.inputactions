@@ -24,15 +24,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MouseDelta",
-                    "type": "PassThrough",
-                    "id": "30fc92ad-0d65-468e-97b5-7af711017f11",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Attack",
                     "type": "Button",
                     "id": "242663c4-a434-42a5-8da2-ed705d1668a3",
@@ -115,17 +106,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2356a368-8ce4-412f-ae73-81328512c421",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MouseDelta",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

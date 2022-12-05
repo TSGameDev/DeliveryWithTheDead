@@ -1,5 +1,6 @@
 using TSGameDev.Core.Controls;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace TSGameDev.Core.State
 {
@@ -29,11 +30,30 @@ namespace TSGameDev.Core.State
 
         public virtual void Update() { }
 
-        public virtual void Movement() { }
+        public virtual void Movement() 
+        {
+            float rawX = playerData.movement.x;
+            float rawY = playerData.movement.y;
+
+            playerAnimator.SetFloat(playerData.movementXHash, rawX, 0.1f, Time.deltaTime);
+            playerAnimator.SetFloat(playerData.movementYHash, rawY, 0.1f, Time.deltaTime);
+
+            if (playerData.movement.magnitude <= Mathf.Epsilon)
+                StateTransition(PlayerStateEnum.Idle, PlayerStateEnum.Running);
+        }
 
         public virtual void Dash() { }
 
-        public virtual void Aim() { }
+        public virtual void Aim() 
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                Vector3 hitPos = hit.point;
+                hitPos.y = player.transform.position.y;
+                player.transform.LookAt(hitPos);
+            }
+        }
 
         public virtual void Attack() { }
 

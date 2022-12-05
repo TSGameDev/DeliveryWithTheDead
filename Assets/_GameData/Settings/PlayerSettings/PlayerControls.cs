@@ -46,15 +46,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MouseDelta"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""30fc92ad-0d65-468e-97b5-7af711017f11"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""242663c4-a434-42a5-8da2-ed705d1668a3"",
@@ -142,17 +133,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2356a368-8ce4-412f-ae73-81328512c421"",
-                    ""path"": ""<Mouse>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MouseDelta"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""c5e1dd9f-d28e-4e89-b259-397f2ab69314"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
@@ -182,7 +162,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
         m_Game_WASDMovement = m_Game.FindAction("WASDMovement", throwIfNotFound: true);
         m_Game_Dash = m_Game.FindAction("Dash", throwIfNotFound: true);
-        m_Game_MouseDelta = m_Game.FindAction("MouseDelta", throwIfNotFound: true);
         m_Game_Attack = m_Game.FindAction("Attack", throwIfNotFound: true);
         m_Game_Throw = m_Game.FindAction("Throw", throwIfNotFound: true);
     }
@@ -246,7 +225,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IGameActions m_GameActionsCallbackInterface;
     private readonly InputAction m_Game_WASDMovement;
     private readonly InputAction m_Game_Dash;
-    private readonly InputAction m_Game_MouseDelta;
     private readonly InputAction m_Game_Attack;
     private readonly InputAction m_Game_Throw;
     public struct GameActions
@@ -255,7 +233,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public GameActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @WASDMovement => m_Wrapper.m_Game_WASDMovement;
         public InputAction @Dash => m_Wrapper.m_Game_Dash;
-        public InputAction @MouseDelta => m_Wrapper.m_Game_MouseDelta;
         public InputAction @Attack => m_Wrapper.m_Game_Attack;
         public InputAction @Throw => m_Wrapper.m_Game_Throw;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
@@ -273,9 +250,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Dash.started -= m_Wrapper.m_GameActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnDash;
-                @MouseDelta.started -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseDelta;
-                @MouseDelta.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseDelta;
-                @MouseDelta.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseDelta;
                 @Attack.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAttack;
@@ -292,9 +266,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
-                @MouseDelta.started += instance.OnMouseDelta;
-                @MouseDelta.performed += instance.OnMouseDelta;
-                @MouseDelta.canceled += instance.OnMouseDelta;
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
@@ -309,7 +280,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnWASDMovement(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
-        void OnMouseDelta(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
     }
