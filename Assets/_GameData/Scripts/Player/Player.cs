@@ -33,6 +33,8 @@ namespace TSGameDev.Core.Controls
             playerControls.Game.WASDMovement.performed += ctx => playerData.movement = ctx.ReadValue<Vector2>();
             playerControls.Game.WASDMovement.canceled += ctx => playerData.movement = Vector2.zero;
 
+            playerControls.Game.Attack.performed += ctx => playerData.playerState.Attack();
+
         }
 
         private void OnDisable()

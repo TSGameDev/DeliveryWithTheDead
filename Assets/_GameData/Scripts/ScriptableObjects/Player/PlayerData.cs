@@ -29,6 +29,8 @@ namespace TSGameDev.Core.Controls
 
         public Vector2 movement;
 
+        public IWeapon activeWeapon;
+
         #endregion
 
         #region Animation Hashes
