@@ -57,7 +57,8 @@ namespace TSGameDev.Core.State
 
         public virtual void Attack() 
         {
-            playerData.activeWeapon.Attack();
+            if(playerData.activeWeapon != null)
+                playerData.activeWeapon.Attack();
         }
 
         public virtual void StateTransition(PlayerStateEnum toState, PlayerStateEnum viaState)

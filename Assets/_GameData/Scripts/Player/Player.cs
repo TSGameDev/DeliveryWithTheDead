@@ -8,12 +8,14 @@ namespace TSGameDev.Core.Controls
         #region Serialize Varibales
 
         [SerializeField] PlayerData playerData;
+        [SerializeField] GameObject weaponHolder;
 
         #endregion
 
         #region Private Variables
 
         private PlayerControls playerControls;
+        private GameObject activeWeaponCache;
 
         #endregion
 
@@ -23,6 +25,7 @@ namespace TSGameDev.Core.Controls
         {
             playerControls = new();
             playerData.playerState = new PlayerStateIdle(playerData, this);
+            playerData.activeWeapon = null;
         }
 
         private void OnEnable()
@@ -49,5 +52,20 @@ namespace TSGameDev.Core.Controls
         }
 
         #endregion
+
+        public PlayerData GetPlayerData() => playerData;
+
+        public void SetWeapon(GameObject weapon)
+        {
+            if(activeWeaponCache != null)
+            {
+                Destroy(activeWeaponCache);
+                activeWeaponCache = null;
+                playerData.activeWeapon = null;
+            }
+
+            activeWeaponCache = Instantiate(weapon, weaponHolder.transform);
+            playerData.activeWeapon = weapon.GetComponent<IWeapon>();
+        }
     }
 }
