@@ -17,30 +17,18 @@ namespace TSGameDev.Core.State
     {
         protected Player player;
         protected PlayerData playerData;
-        protected Animator playerAnimator;
         protected CharacterController playerController;
 
         public PlayerState(PlayerData playerData, Player player)
         {
             this.player = player;
             this.playerData = playerData;
-            playerAnimator = player.GetComponent<Animator>();
             playerController = player.GetComponent<CharacterController>();
         }
 
         public virtual void Update() { }
 
-        public virtual void Movement() 
-        {
-            float rawX = playerData.movement.x;
-            float rawY = playerData.movement.y;
-
-            playerAnimator.SetFloat(playerData.movementXHash, rawX, 0.1f, Time.deltaTime);
-            playerAnimator.SetFloat(playerData.movementYHash, rawY, 0.1f, Time.deltaTime);
-
-            if (playerData.movement.magnitude <= Mathf.Epsilon)
-                StateTransition(PlayerStateEnum.Idle, PlayerStateEnum.Running);
-        }
+        public virtual void Movement() { }
 
         public virtual void Dash() { }
 

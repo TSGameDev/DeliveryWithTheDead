@@ -5,7 +5,7 @@ namespace TSGameDev
     public class Rifle : MonoBehaviour, IWeapon
     {
         [SerializeField] WeaponData weaponData;
-        Transform rayPoint;
+        [SerializeField] Transform rayPoint;
 
         private int currentAmmo;
         public int GetAmmo() => currentAmmo;
@@ -16,8 +16,6 @@ namespace TSGameDev
         private void Awake()
         {
             currentAmmo = weaponData.GetAmmo();
-            rayPoint = GameObject.FindGameObjectWithTag("Player").transform;
-            Debug.Log(rayPoint.name);
         }
 
         private void Update()
@@ -39,15 +37,15 @@ namespace TSGameDev
             if(canFire)
             {
                 fireTimer = weaponData.GetAttackBuffer();
-                if(Physics.Raycast(rayPoint.position, rayPoint.TransformDirection(Vector3.forward), out RaycastHit hit, weaponData.GetRange()))
+                if(Physics.Raycast(rayPoint.position, rayPoint.forward, out RaycastHit hit, weaponData.GetRange()))
                 {
                     Debug.Log("Hit Fire");
-                    Debug.DrawRay(rayPoint.position, rayPoint.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+                    Debug.DrawRay(rayPoint.position, rayPoint.forward * hit.distance, Color.yellow);
                 }
                 else
                 {
                     Debug.Log("Didnt Hit Fire");
-                    Debug.DrawRay(rayPoint.position, rayPoint.TransformDirection(Vector3.forward) * 1000, Color.red);
+                    Debug.DrawRay(rayPoint.position, rayPoint.forward * 1000, Color.red);
                 }
             }
         }

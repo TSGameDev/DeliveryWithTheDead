@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using TSGameDev.Core.State;
 using UnityEngine;
 
@@ -66,6 +67,7 @@ namespace TSGameDev.Core.Controls
 
             activeWeaponCache = Instantiate(weapon, weaponHolder.transform);
             playerData.activeWeapon = weapon.GetComponent<IWeapon>();
+            Debug.Log(activeWeaponCache);
         }
     }
 }

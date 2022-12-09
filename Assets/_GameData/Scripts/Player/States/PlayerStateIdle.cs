@@ -6,12 +6,7 @@ namespace TSGameDev.Core.State
 {
     public class PlayerStateIdle : PlayerState
     {
-        public PlayerStateIdle(PlayerData playerData, Player player) : base(playerData, player) 
-        {
-            playerAnimator.SetBool(playerData.idleHash, true);
-            playerAnimator.SetFloat(playerData.movementXHash, 0);
-            playerAnimator.SetFloat(playerData.movementYHash, 0);
-        }
+        public PlayerStateIdle(PlayerData playerData, Player player) : base(playerData, player) { }
 
         public override void Update()
         {

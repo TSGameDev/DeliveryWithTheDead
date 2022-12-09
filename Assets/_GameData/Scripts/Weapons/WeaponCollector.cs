@@ -17,6 +17,7 @@ namespace TSGameDev
 
         private void OnCollisionEnter(Collision collision)
         {
+            Debug.Log(collision.collider.name);
             if(collision.collider.CompareTag("Player"))
             {
                 Player player = collision.collider.GetComponent<Player>();
