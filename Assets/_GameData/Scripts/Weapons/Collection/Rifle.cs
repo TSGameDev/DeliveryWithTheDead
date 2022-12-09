@@ -1,23 +1,55 @@
 using UnityEngine;
-using UnityEngine.Rendering.UI;
 
 namespace TSGameDev
 {
     public class Rifle : MonoBehaviour, IWeapon
     {
-        [SerializeField] GameObject bullet;
         [SerializeField] WeaponData weaponData;
-        [SerializeField] Transform firePoint;
+        Transform rayPoint;
 
         private int currentAmmo;
-
         public int GetAmmo() => currentAmmo;
+
+        private float fireTimer = 0f;
+        private bool canFire = true;
+
+        private void Awake()
+        {
+            currentAmmo = weaponData.GetAmmo();
+            rayPoint = GameObject.FindGameObjectWithTag("Player").transform;
+            Debug.Log(rayPoint.name);
+        }
+
+        private void Update()
+        {
+            if (fireTimer > 0)
+            {
+                fireTimer -= 1 * Time.deltaTime;
+                canFire = false;
+            }
+            else
+            {
+                fireTimer = 0f;
+                canFire = true;
+            }
+        }
 
         public void Attack()
         {
-            Debug.Log(firePoint.position);
-            Debug.Log(firePoint.localPosition);
-            Instantiate(bullet, firePoint.position, Quaternion.identity);
+            if(canFire)
+            {
+                fireTimer = weaponData.GetAttackBuffer();
+                if(Physics.Raycast(rayPoint.position, rayPoint.TransformDirection(Vector3.forward), out RaycastHit hit, weaponData.GetRange()))
+                {
+                    Debug.Log("Hit Fire");
+                    Debug.DrawRay(rayPoint.position, rayPoint.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+                }
+                else
+                {
+                    Debug.Log("Didnt Hit Fire");
+                    Debug.DrawRay(rayPoint.position, rayPoint.TransformDirection(Vector3.forward) * 1000, Color.red);
+                }
+            }
         }
     }
 }
