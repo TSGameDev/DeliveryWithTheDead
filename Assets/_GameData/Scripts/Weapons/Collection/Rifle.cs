@@ -17,7 +17,9 @@ namespace TSGameDev
         {
             Debug.Log(firePoint.position);
             Debug.Log(firePoint.localPosition);
-            Instantiate(bullet, firePoint.position, Quaternion.identity);
+            Instantiate(bullet, firePoint.position, firePoint.rotation);
+            //GameObject instance = Instantiate(bullet, Vector3.zero, firePoint.rotation);
+            //instance.transform.position = firePoint.position;
         }
     }
 }

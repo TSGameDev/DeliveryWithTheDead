@@ -8,20 +8,20 @@ namespace TSGameDev
 
         private Rigidbody rb;
 
-        private float spawnPosZ;
+        //private float spawnPosZ;
 
         private void Awake()
         {
-            spawnPosZ = transform.position.z;
+            //spawnPosZ = transform.position.z;
             rb = GetComponent<Rigidbody>();
             rb.velocity = transform.TransformDirection(Vector3.forward * bulletData.GetSpeed());
         }
 
         private void Update()
         {
-            float disDiff = transform.position.z - spawnPosZ;
-            if (disDiff > bulletData.GetDistance())
-                DestroyObj();
+            //float disDiff = transform.position.z - spawnPosZ;
+            //if (disDiff > bulletData.GetDistance())
+            //    DestroyObj();
         }
 
         private void DestroyObj() => Destroy(gameObject);
