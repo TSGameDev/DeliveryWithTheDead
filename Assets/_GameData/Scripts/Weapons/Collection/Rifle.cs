@@ -6,6 +6,7 @@ namespace TSGameDev
     {
         [SerializeField] WeaponData weaponData;
         [SerializeField] Transform rayPoint;
+        [SerializeField] GameObject bullet;
 
         private int currentAmmo;
         public int GetAmmo() => currentAmmo;
@@ -37,7 +38,7 @@ namespace TSGameDev
             if(canFire)
             {
                 fireTimer = weaponData.GetAttackBuffer();
-                if(Physics.Raycast(rayPoint.position, rayPoint.forward, out RaycastHit hit, weaponData.GetRange()))
+                /*if(Physics.Raycast(rayPoint.position, rayPoint.forward, out RaycastHit hit, weaponData.GetRange()))
                 {
                     Debug.Log("Hit Fire");
                     Debug.DrawRay(rayPoint.position, rayPoint.forward * hit.distance, Color.yellow);
@@ -46,7 +47,11 @@ namespace TSGameDev
                 {
                     Debug.Log("Didnt Hit Fire");
                     Debug.DrawRay(rayPoint.position, rayPoint.forward * 1000, Color.red);
-                }
+                }*/
+                Debug.Log(rayPoint.position);
+                GameObject clone = Instantiate(bullet, Vector3.zero, Quaternion.identity);
+                clone.transform.position = rayPoint.position;
+                Debug.Log(rayPoint.position);
             }
         }
     }

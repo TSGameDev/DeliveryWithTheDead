@@ -219,6 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: e293098e4867d4b43b7ed0e1a0ba814a, type: 2}
   rayPoint: {fileID: 8964160967692086447}
+  bullet: {fileID: 5130288226838878554, guid: c3011f9f6080da541aa9d401f870c443, type: 3}
 --- !u!1 &5517844139185242848
 GameObject:
   m_ObjectHideFlags: 0
